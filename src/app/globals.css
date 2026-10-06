@@ -1,26 +1,547 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*!
+ * Hambire ERP — iOS-inspired premium design system
+ * True neutral dark mode · SF Pro / Geist typography · glow micro-interactions
+ */
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tailwind v4 theme mapping — powers bg-background, text-foreground, border-border… */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ──────────────────────────────────────────────
+   Light mode — Apple systemGray palette
+   ────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --primary: #0071e7;
+  --primary-foreground: #ffffff;
+  --secondary: #6e6e73;
+  --secondary-foreground: #ffffff;
+  --muted: #ececef;
+  --muted-foreground: #6e6e73;
+  --accent: #0071e7;
+  --accent-foreground: #ffffff;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.14);
+  --ring: #0071e7;
+
+  --sidebar-bg: rgba(255, 255, 255, 0.78);
+  --sidebar-fg: #1d1d1f;
+  --glass: rgba(255, 255, 255, 0.72);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.06), 0 24px 56px rgba(0, 0, 0, 0.12);
+  --radius: 18px;
+}
+
+/* ──────────────────────────────────────────────
+   Dark mode — true neutral black (OLED), no blue cast
+   ────────────────────────────────────────────── */
+html.dark {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --card: #141416;
+  --card-foreground: #f5f5f7;
+  --primary: #0a84ff;
+  --primary-foreground: #ffffff;
+  --secondary: #98989d;
+  --secondary-foreground: #0a0a0a;
+  --muted: #1c1c1e;
+  --muted-foreground: #98989d;
+  --accent: #0a84ff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff453a;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.16);
+  --ring: #0a84ff;
+
+  --sidebar-bg: rgba(10, 10, 11, 0.78);
+  --sidebar-fg: #f5f5f7;
+  --glass: rgba(22, 22, 24, 0.72);
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 32px 72px rgba(0, 0, 0, 0.8);
+  --radius: 18px;
+}
+
+/* ──────────────────────────────────────────────
+   Typography — system SF Pro first (Apple devices), Geist fallback
+   ────────────────────────────────────────────── */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI",
+      system-ui, sans-serif;
+    line-height: 1.5;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
+/* Mono eyebrow label — Linear/Stripe-style micro labels */
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Display accent — heavier, tighter headings (wordmark, chart titles) */
+.font-accent {
+  font-family: var(--font-jakarta), -apple-system, system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Subtle PCB-dot texture fading out below the logo — electronics identity.
+   The sidebar itself is `fixed` (a positioned ancestor), so the ::after anchor
+   needs no extra `position: relative` here — declaring it would override the
+   utility (unlayered CSS beats Tailwind's layer) and drop the sidebar back
+   into normal flow, pushing every page's content below the fold. */
+.sidebar-dots::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(128, 128, 128, 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 42%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 42%);
+  z-index: 0;
+}
+
+.sidebar-dots > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tnum,
+.stat-value,
+td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ──────────────────────────────────────────────
+   Custom cursor — dot + lagging ring (blend difference)
+   ────────────────────────────────────────────── */
+@media (pointer: fine) {
+  html.cursor-none,
+  html.cursor-none * {
+    cursor: none !important;
+  }
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease, opacity 0.2s ease;
+}
+
+.cursor-ring.is-hover {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cursor-ring.is-down {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+}
+
+.cursor-dot.is-hidden,
+.cursor-ring.is-hidden {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Cards — mouse-follow glow + hover lift
+   ────────────────────────────────────────────── */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in srgb, var(--ring) 12%, transparent),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  border-color: color-mix(in srgb, var(--ring) 30%, transparent);
+}
+
+/* ──────────────────────────────────────────────
+   Toolbar panels (search bars, filters)
+   ────────────────────────────────────────────── */
+.toolbar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-1);
+}
+
+/* ──────────────────────────────────────────────
+   Buttons — press + shine sweep
+   ────────────────────────────────────────────── */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(130%);
+}
+
+/* ──────────────────────────────────────────────
+   Arrow links — "View all →" slides on hover
+   ────────────────────────────────────────────── */
+.arrow-link .arr {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow-link:hover .arr {
+  transform: translateX(5px);
+}
+
+/* ──────────────────────────────────────────────
+   Tables — mono eyebrow headers, accent hover bar
+   ────────────────────────────────────────────── */
+th,
+thead td {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s ease;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover td {
+  background: color-mix(in srgb, var(--muted) 60%, transparent);
+}
+
+tbody tr:hover td:first-child {
+  box-shadow: inset 2px 0 0 var(--primary);
+}
+
+/* ──────────────────────────────────────────────
+   Status pills — iOS system colors
+   ────────────────────────────────────────────── */
+.pill-up {
+  background: color-mix(in srgb, #30d158 16%, transparent);
+  color: #248a3d;
+}
+
+.pill-down {
+  background: color-mix(in srgb, #ff3b30 14%, transparent);
+  color: #d70015;
+}
+
+.pill-warn {
+  background: color-mix(in srgb, #ff9f0a 18%, transparent);
+  color: #b25000;
+}
+
+html.dark .pill-up {
+  color: #30d158;
+}
+
+html.dark .pill-down {
+  color: #ff6961;
+}
+
+html.dark .pill-warn {
+  color: #ffd60a;
+}
+
+/* ──────────────────────────────────────────────
+   Segmented control — iOS style (reports period)
+   ────────────────────────────────────────────── */
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: color-mix(in srgb, var(--muted) 80%, transparent);
+  border-radius: 9999px;
+}
+
+.segmented button {
+  border-radius: 9999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.segmented button:hover:not([data-active="true"]) {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.segmented button[data-active="true"] {
+  background: var(--card);
+  color: var(--foreground);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+html.dark .segmented button[data-active="true"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ──────────────────────────────────────────────
+   Animations
+   ────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.pop-in {
+  animation: popIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ──────────────────────────────────────────────
+   Focus, selection, scrollbars, a11y
+   ────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ring) 30%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 30%, transparent) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted-foreground) 30%, transparent);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Printing — only the receipt (.print-area) prints
+   ────────────────────────────────────────────── */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .print-area .eyebrow,
+  .print-area .text-muted-foreground {
+    color: #555555 !important;
+  }
 }
