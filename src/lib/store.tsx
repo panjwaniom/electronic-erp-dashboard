@@ -33,7 +33,7 @@ import {
   todayISO,
 } from './erp/utils'
 
-const STORAGE_KEY = 'hambire-erp-state-v2'
+const STORAGE_KEY = 'voltkart-erp-state-v2'
 
 /* ──────────────────────────────────────────────
    Small id helper
@@ -737,7 +737,7 @@ export function ERPProvider({ children }: { children: ReactNode }) {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `hambire-erp-backup-${todayISO()}.json`
+      a.download = `voltkart-erp-backup-${todayISO()}.json`
       a.click()
       URL.revokeObjectURL(url)
       notify('Backup downloaded to your device', 'success')

@@ -132,7 +132,7 @@ const history = generateSales(enrichedProducts, customers)
 
 /**
  * One invoice sequence for the whole book: bills are sorted oldest → newest
- * and numbered `HE/26-27/0001…`, exactly the way a GST-registered shop
+ * and numbered `VK/26-27/0001…`, exactly the way a GST-registered shop
  * sequences invoices for a financial year. Prototype `INV-…` numbers are
  * rewritten, and every ledger/stock reference follows.
  */

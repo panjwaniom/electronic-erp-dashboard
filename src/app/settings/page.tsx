@@ -144,13 +144,13 @@ export default function SettingsPage() {
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Field label={t("settings.shopName")}>
-                    <Input value={form.name} onChange={set("name")} placeholder="Hambire Electronics" />
+                    <Input value={form.name} onChange={set("name")} placeholder="VoltKart Electronics" />
                   </Field>
                   <Field label={t("settings.legalName")}>
                     <Input
                       value={form.legalName}
                       onChange={set("legalName")}
-                      placeholder="Hambire Retail Solutions"
+                      placeholder="VoltKart Retail"
                     />
                   </Field>
                   <Field label="Tagline" className="sm:col-span-2">
@@ -167,7 +167,7 @@ export default function SettingsPage() {
                     <Input
                       value={form.gstin}
                       onChange={set("gstin")}
-                      placeholder="29HAMBR2947E1Z5"
+                      placeholder="29AABCE1234F1Z5"
                       className="tabular-nums uppercase"
                     />
                   </Field>
@@ -175,7 +175,7 @@ export default function SettingsPage() {
                     <Input
                       value={form.invoicePrefix}
                       onChange={set("invoicePrefix")}
-                      placeholder="HE/26-27/"
+                      placeholder="VK/26-27/"
                       className="tabular-nums"
                     />
                   </Field>

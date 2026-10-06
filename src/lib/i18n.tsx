@@ -868,7 +868,7 @@ interface LanguageValue {
 
 const LanguageContext = createContext<LanguageValue | null>(null)
 
-const STORAGE_KEY = "hambire-lang"
+const STORAGE_KEY = "voltkart-lang"
 
 function loadLang(): Lang {
   try {

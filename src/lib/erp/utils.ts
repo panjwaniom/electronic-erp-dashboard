@@ -8,19 +8,19 @@ import type {
 } from '@/types'
 
 /* ──────────────────────────────────────────────
-   Business identity — Hambire Electronics
+   Business identity — VoltKart (fictional demo shop)
    ────────────────────────────────────────────── */
 export const BUSINESS: BusinessInfo = {
-  name: 'Hambire Electronics',
-  legalName: 'Hambire Retail Solutions',
+  name: 'VoltKart Electronics',
+  legalName: 'VoltKart Retail',
   tagline: 'Electronics · Retail & Service',
-  gstin: '29HAMBR2947E1Z5',
+  gstin: '29AABCE1234F1Z5',
   state: 'Karnataka',
   stateCode: '29',
-  address: 'Shop 12, Commercial Street, Bengaluru – 560001',
-  phone: '+91 98450 22341',
-  email: 'care@hambirelectronics.in',
-  invoicePrefix: 'HE/26-27/',
+  address: 'Shop 12, MG Road, Bengaluru – 560001',
+  phone: '+91 98765 43210',
+  email: 'support@voltkart.example',
+  invoicePrefix: 'VK/26-27/',
 }
 
 /* ──────────────────────────────────────────────
@@ -380,7 +380,7 @@ export function buildDayBook(
     .filter((t) => t.date === date)
     .forEach((t) => {
       const informational =
-        t.reference.startsWith('HE/') && t.type === 'OUT'
+        t.reference.startsWith(BUSINESS.invoicePrefix) && t.type === 'OUT'
       if (informational) return // already shown as a bill
       entries.push({
         id: `db-stk-${t.id}`,

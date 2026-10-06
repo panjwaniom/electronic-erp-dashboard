@@ -1,6 +1,6 @@
-# Hambire Electronics ERP
+# Electronic ERP Dashboard
 
-A front-end ERP dashboard prototype for a single-shop Indian electronics retailer: GST billing counter, inventory, customer udhaar ledger, staff attendance, day book, and P&L/GST reports. Built with Next.js (App Router), React, and Tailwind CSS.
+A front-end ERP dashboard prototype for a single-shop Indian electronics retailer (demo shop: "VoltKart Electronics", Bengaluru): GST billing counter, inventory, customer udhaar ledger, staff attendance, day book, and P&L/GST reports. Built with Next.js (App Router), React, and Tailwind CSS.
 
 > **Status:** Working prototype with realistic seeded demo data. All data lives in the browser (`localStorage`) — there is no backend, database, or authentication. Intended as a front-end portfolio piece and a demo for shop-counter workflows, not a production system.
 
@@ -87,11 +87,13 @@ State flows one way: pages call store mutations (`recordSale`, `collectPayment`,
 
 ## Screenshots
 
-<!-- TODO: add screenshots to docs/screenshots/ (dashboard.png, billing-new.png,
-     daybook.png, reports.png) and embed them here before sharing publicly.
-     They could not be captured in this session because the browser window
-     was not visible. Suggested captures at 1600px wide, light theme, English:
-     Dashboard, /billing/new counter, Day Book, Reports P&L tab. -->
+| Dashboard | Billing counter |
+|---|---|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Billing counter](docs/screenshots/billing-new.png) |
+
+| Day Book | Reports (P&L) |
+|---|---|
+| ![Day Book](docs/screenshots/daybook.png) | ![Reports](docs/screenshots/reports.png) |
 
 ## Installation
 
@@ -122,7 +124,7 @@ npm start       # serve the production build
 
 ## Demo notes
 
-- The demo shop ("Hambire Electronics", Bengaluru) and all customers, bills, and figures are fictional sample data.
+- The demo shop ("VoltKart Electronics", Bengaluru) and all customers, bills, and figures are fictional sample data.
 - All changes save automatically in the browser. Use the sidebar footer buttons to download a JSON backup or restore the original demo data.
 
 ## Current limitations

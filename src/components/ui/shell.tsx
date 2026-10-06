@@ -61,7 +61,7 @@ function LanguageSwitcher() {
 
 function Logo({ collapsed }: { collapsed: boolean }) {
   return (
-    <Link href="/dashboard" className="group flex items-center gap-3 px-2" aria-label="Hambire ERP home">
+    <Link href="/dashboard" className="group flex items-center gap-3 px-2" aria-label="VoltKart ERP home">
       <span className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-[14px] bg-gradient-to-br from-[#0a84ff] to-[#00d4ff] text-white shadow-[0_6px_20px_rgba(10,132,255,0.4)] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-[-6deg]">
         <Zap className="h-5 w-5" fill="currentColor" strokeWidth={1.5} />
       </span>
@@ -72,7 +72,7 @@ function Logo({ collapsed }: { collapsed: boolean }) {
         )}
       >
         <span className="font-accent text-[19px] font-extrabold leading-tight text-foreground">
-          Hambire
+          VoltKart
         </span>
         <span className="eyebrow mt-0.5">Electronics ERP</span>
       </span>
@@ -316,7 +316,7 @@ function MobileBar({ onMenu }: { onMenu: () => void }) {
         <span className="grid h-7 w-7 place-items-center rounded-[9px] bg-gradient-to-br from-[#0a84ff] to-[#00d4ff] text-white">
           <Zap className="h-3.5 w-3.5" fill="currentColor" strokeWidth={1.5} />
         </span>
-        <span className="font-accent text-[17px] font-extrabold text-foreground">Hambire</span>
+        <span className="font-accent text-[17px] font-extrabold text-foreground">VoltKart</span>
       </Link>
       <div className="flex items-center gap-1.5">
         <LanguageSwitcher />
