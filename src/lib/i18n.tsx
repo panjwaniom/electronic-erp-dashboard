@@ -40,7 +40,6 @@ const en: Record<string, string> = {
   "shell.collapse": "Collapse sidebar",
   "shell.menu": "Open navigation",
   "shell.language": "Language",
-  "shell.tips": "Show tips",
 
   // dashboard
   "dash.overview": "Overview",
@@ -452,7 +451,6 @@ const hi: Record<string, string> = {
   "shell.collapse": "साइडबार बंद करें",
   "shell.menu": "मेन्यू खोलें",
   "shell.language": "भाषा",
-  "shell.tips": "टिप्स दिखाएं",
 
   // dashboard
   "dash.overview": "अवलोकन",

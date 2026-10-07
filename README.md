@@ -97,11 +97,11 @@ State flows one way: pages call store mutations (`recordSale`, `collectPayment`,
 
 ## Installation
 
-Prerequisites: Node.js 18+ and npm.
+Prerequisites: Node.js 20.9+ and npm.
 
 ```bash
-git clone <your-repo-url>
-cd <repo>
+git clone https://github.com/panjwaniom/electronic-erp-dashboard.git
+cd electronic-erp-dashboard
 npm install
 ```
 
@@ -132,7 +132,7 @@ npm start       # serve the production build
 - Browser-only: data does not sync across devices and clears with site storage; no multi-user or role support
 - No real backend, database, payments, or e-invoicing integration
 - Seed data is fictional and tuned for demonstration, not accounting accuracy
-- Tips walkthrough button is a placeholder; cloud backup is local JSON export/import
+- Cloud backup is local JSON export/import (no cloud sync)
 
 ## Future improvements
 
